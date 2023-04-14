@@ -4,7 +4,7 @@ import { auth } from '../firebase/firebase';
 import { useAuthCtx } from '../store/AuthProvider';
 
 function LoginPage() {
-  const { login, showSuccess } = useAuthCtx();
+  const { login, ui } = useAuthCtx();
   function loginFire({ email, password }) {
     // login with fire base
 
@@ -15,7 +15,7 @@ function LoginPage() {
         // ...
         console.log('user ===', user);
         login(user);
-        showSuccess();
+        ui.showSuccess();
       })
       .catch((error) => {
         const errorCode = error.code;
