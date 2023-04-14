@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react';
 
 import './feedback.scss';
+import { useAuthCtx } from '../../../store/AuthProvider';
 
 function Feedback() {
   // pasiimti feedback reiksmes is authCtx ir padaryti kad veiktu parodymas
+  const { feedback } = useAuthCtx();
+  const { show, type, msg } = feedback;
 
   const handleClose = () => {};
 
