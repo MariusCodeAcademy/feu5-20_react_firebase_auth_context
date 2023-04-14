@@ -3,8 +3,10 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import './new-post.scss';
+import { useAuthCtx } from '../../store/AuthProvider';
 
-const NewPostForm = () => {
+const NewPostForm = ({ onNewPost }) => {
+  const { user } = useAuthCtx();
   const formik = useFormik({
     initialValues: {
       title: '',
@@ -12,6 +14,7 @@ const NewPostForm = () => {
       author: '',
       tags: '',
       date: '',
+      userUid: user?.uid,
     },
     validate: (values) => {
       const errors = {};
@@ -32,6 +35,7 @@ const NewPostForm = () => {
     },
     onSubmit: (values) => {
       console.log(values);
+      onNewPost(values);
     },
   });
 
