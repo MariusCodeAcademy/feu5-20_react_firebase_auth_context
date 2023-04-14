@@ -8,6 +8,9 @@ const AuthContext = createContext({
   register() {},
 });
 
+// pervadinti AuthContext
+AuthContext.displayName = 'Autentifikacija';
+
 function AuthProvider({ children }) {
   const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState(false);
