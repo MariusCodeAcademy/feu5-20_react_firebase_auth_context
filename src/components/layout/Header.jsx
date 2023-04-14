@@ -21,9 +21,14 @@ function Header() {
             </NavLink>
           )}
           {isLoggedIn && (
-            <NavLink className="navItem" to={'/posts'}>
-              Posts
-            </NavLink>
+            <>
+              <NavLink className="navItem" to={'/posts'}>
+                Posts
+              </NavLink>
+              <NavLink className="navItem" to={'/posts/new'}>
+                Add post
+              </NavLink>
+            </>
           )}
           {!isLoggedIn && (
             <NavLink className="navItem" to={'/login'}>
