@@ -34,6 +34,13 @@ function AuthProvider({ children }) {
         type: 'success',
       });
     },
+    showLoading() {
+      setFeedback({
+        show: true,
+        msg: 'Loading',
+        type: 'info',
+      });
+    },
     closeAlert() {
       setFeedback({
         show: false,

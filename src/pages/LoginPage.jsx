@@ -6,6 +6,8 @@ import { useAuthCtx } from '../store/AuthProvider';
 function LoginPage() {
   const { login, ui } = useAuthCtx();
   function loginFire({ email, password }) {
+    // start loading
+    ui.showLoading();
     // login with fire base
 
     signInWithEmailAndPassword(auth, email, password)
