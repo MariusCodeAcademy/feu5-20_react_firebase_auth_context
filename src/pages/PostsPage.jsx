@@ -30,10 +30,12 @@ function PostsPage() {
       <p>This is PostsPage</p>
       {/* map over postsArr and display title and body of each post */}
       <ul>
-        <li>post 1</li>
-        <li>post 1</li>
-        <li>post 1</li>
-        <li>post 1</li>
+        {postsArr.map((pObj) => (
+          <li key={pObj.uid}>
+            <h3>{pObj.title}</h3>
+            <p>{pObj.body}</p>
+          </li>
+        ))}
       </ul>
     </div>
   );
