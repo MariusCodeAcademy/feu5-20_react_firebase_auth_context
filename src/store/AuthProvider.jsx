@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 const AuthContext = createContext({
   user: {},
@@ -22,3 +22,7 @@ function AuthProvider({ children }) {
 }
 
 export default AuthProvider;
+
+export function useAuthCtx() {
+  return useContext(AuthContext);
+}
