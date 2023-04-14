@@ -1,8 +1,10 @@
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import LoginForm from '../components/auth/LoginForm';
 import { auth } from '../firebase/firebase';
+import { useAuthCtx } from '../store/AuthProvider';
 
 function LoginPage() {
+  const { login } = useAuthCtx();
   function loginFire({ email, password }) {
     // login with fire base
 
@@ -12,6 +14,7 @@ function LoginPage() {
         const user = userCredential.user;
         // ...
         console.log('user ===', user);
+        login(user);
       })
       .catch((error) => {
         const errorCode = error.code;

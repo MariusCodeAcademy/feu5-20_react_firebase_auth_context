@@ -6,18 +6,47 @@ const AuthContext = createContext({
   login() {},
   logout() {},
   register() {},
+  feedback: {
+    show: false,
+    msg: '',
+    type: '',
+  },
+  showSuccess() {},
 });
 
 // pervadinti AuthContext
 AuthContext.displayName = 'Autentifikacija';
 
 function AuthProvider({ children }) {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [feedback, setFeedback] = useState({
+    show: false,
+    msg: '',
+    type: '',
+  });
+
+  function showSuccess() {
+    setFeedback({
+      show: true,
+      msg: 'Success',
+      type: 'success',
+    });
+  }
+
+  const isLoggedIn = !!user;
+
+  function login(userObj) {
+    setUser(userObj);
+  }
 
   const authCtx = {
     user,
     isLoading,
+    isLoggedIn,
+    login,
+    feedback,
+    showSuccess,
   };
   return (
     <AuthContext.Provider value={authCtx}>{children}</AuthContext.Provider>
