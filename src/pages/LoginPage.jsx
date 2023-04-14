@@ -4,10 +4,11 @@ import { auth } from '../firebase/firebase';
 import { useAuthCtx } from '../store/AuthProvider';
 
 function LoginPage() {
-  const { login, ui } = useAuthCtx();
+  const { login, ui, setIsLoading } = useAuthCtx();
   function loginFire({ email, password }) {
     // start loading
     ui.showLoading();
+    setIsLoading(true);
     // login with fire base
 
     signInWithEmailAndPassword(auth, email, password)
@@ -17,12 +18,14 @@ function LoginPage() {
         // ...
         console.log('user ===', user);
         login(user);
+        setIsLoading(false);
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log('errorMessage ===', errorMessage);
         ui.showError('Neteisingas email arba slaptazodis');
+        setIsLoading(false);
       });
     // https://firebase.google.com/docs/auth/web/password-auth#sign_in_a_user_with_an_email_address_and_password
   }
