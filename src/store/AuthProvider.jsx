@@ -1,4 +1,6 @@
+import { onAuthStateChanged } from 'firebase/auth';
 import { createContext, useContext, useEffect, useState } from 'react';
+import { auth } from '../firebase/firebase';
 
 const AuthContext = createContext({
   user: {},
@@ -25,6 +27,30 @@ function AuthProvider({ children }) {
     msg: '',
     type: '',
   });
+
+  useEffect(() => {
+    // stebim vartojo prisijungimo busena
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        const uid = user.uid;
+        // ...
+        console.log('prisijungimas', user.email);
+        setUser(user);
+        setFeedback({
+          show: true,
+          msg: msg || 'Success',
+          type: 'success',
+        });
+      } else {
+        // User is signed out
+        // ...
+        console.log('Logout User');
+        setUser(null);
+      }
+    });
+  }, []);
 
   // paslepti alerta po 3 sek
   const { show, msg } = feedback;

@@ -17,7 +17,7 @@ function LoginPage() {
         const user = userCredential.user;
         // ...
         console.log('user ===', user);
-        login(user);
+        // login(user);
         setIsLoading(false);
       })
       .catch((error) => {
