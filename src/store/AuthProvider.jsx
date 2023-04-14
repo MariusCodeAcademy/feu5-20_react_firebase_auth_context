@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 const AuthContext = createContext({
   user: {},
@@ -26,12 +26,33 @@ function AuthProvider({ children }) {
     type: '',
   });
 
+  // paslepti alerta po 3 sek
+  const { show, msg } = feedback;
+  useEffect(() => {
+    if (show === true && msg !== 'Loading') {
+      setTimeout(() => {
+        setFeedback({
+          show: false,
+          msg: '',
+          type: '',
+        });
+      }, 3000);
+    }
+  }, [show, msg]);
+
   const ui = {
-    showSuccess() {
+    showSuccess(msg = '') {
       setFeedback({
         show: true,
-        msg: 'Success',
+        msg: msg || 'Success',
         type: 'success',
+      });
+    },
+    showError(msg = '') {
+      setFeedback({
+        show: true,
+        msg: msg || 'Klaida',
+        type: 'error',
       });
     },
     showLoading() {
@@ -54,6 +75,11 @@ function AuthProvider({ children }) {
 
   function login(userObj) {
     setUser(userObj);
+    ui.showSuccess('User logged in');
+  }
+  function logout() {
+    setUser(null);
+    ui.showSuccess('User logged out');
   }
 
   const authCtx = {
@@ -61,6 +87,7 @@ function AuthProvider({ children }) {
     isLoading,
     isLoggedIn,
     login,
+    logout,
     feedback,
     ui,
   };

@@ -1,25 +1,32 @@
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase/firebase';
 import { useEffect, useState } from 'react';
+import { useAuthCtx } from '../store/AuthProvider';
 
 function PostsPage() {
+  const { ui } = useAuthCtx();
   const [postsArr, setPostsArr] = useState([]);
 
   useEffect(() => {
     async function getPosts() {
       // norim gauti postus
-      const querySnapshot = await getDocs(collection(db, 'posts'));
-      const tempPosts = [];
-      querySnapshot.forEach((doc) => {
-        // console.log(`${doc.id} => ${doc.data()}`);
-        // console.log('doc.data() ===', doc.data());
-        tempPosts.push({
-          uid: doc.id,
-          ...doc.data(),
+      try {
+        const querySnapshot = await getDocs(collection(db, 'posts'));
+        const tempPosts = [];
+        querySnapshot.forEach((doc) => {
+          // console.log(`${doc.id} => ${doc.data()}`);
+          // console.log('doc.data() ===', doc.data());
+          tempPosts.push({
+            uid: doc.id,
+            ...doc.data(),
+          });
         });
-      });
-      console.log('tempPosts ===', tempPosts);
-      setPostsArr(tempPosts);
+        console.log('tempPosts ===', tempPosts);
+        setPostsArr(tempPosts);
+      } catch (error) {
+        console.warn('getPosts', error.code, error.message);
+        ui.showError('Tik registruotiems vartotojams');
+      }
     }
     getPosts();
   }, []);

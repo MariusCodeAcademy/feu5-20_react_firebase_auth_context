@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import './header.scss';
 import { useAuthCtx } from '../../store/AuthProvider';
+import Logout from '../auth/Logout';
 
 function Header() {
   const { isLoggedIn } = useAuthCtx();
@@ -27,6 +28,9 @@ function Header() {
               </NavLink>
               <NavLink className="navItem" to={'/posts/new'}>
                 Add post
+              </NavLink>
+              <NavLink className="navItem" to={'/login'}>
+                <Logout />
               </NavLink>
             </>
           )}

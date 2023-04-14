@@ -17,12 +17,12 @@ function LoginPage() {
         // ...
         console.log('user ===', user);
         login(user);
-        ui.showSuccess();
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log('errorMessage ===', errorMessage);
+        ui.showError('Neteisingas email arba slaptazodis');
       });
     // https://firebase.google.com/docs/auth/web/password-auth#sign_in_a_user_with_an_email_address_and_password
   }
