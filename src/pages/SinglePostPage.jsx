@@ -1,8 +1,9 @@
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, collection, getDocs, query } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { db } from '../firebase/firebase';
 import Card from '../components/ui/card/Card';
+import CommentBlock from '../components/comments/CommentsBlock';
 
 function SinglePostPage() {
   const { postUid } = useParams();
@@ -36,6 +37,7 @@ function SinglePostPage() {
         <button onClick={() => navigate(-1)}>Go back</button>
       </Card>
       {/* Comments Block */}
+      <CommentBlock postId={postUid} />
     </div>
   );
 }
