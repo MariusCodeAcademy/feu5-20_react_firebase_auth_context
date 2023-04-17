@@ -8,3 +8,15 @@ Sukurkite React.js puslapį, kuris suteiks vartotojams galimybę registruotis ir
 4. Sukurkite duomenų struktūrą savo Firestore duomenų bazėje, kurioje bus laikomos knygų informacijos duomenys. Jūs galite naudoti firebase/firestore biblioteką tam, kad galėtumėte komunikuoti su savo Firestore duomenų baze.
 5. Sukurkite React.js komponentus, kurie leistų vartotojams peržiūrėti esamas knygas, kurti naujas knygas ir trinti egzistuojančias knygas.
 6. Sukurkite puslapio maršrutizatorių, kad vartotojai galėtų naviguoti tarp skirtingų puslapių, tokie kaip vartotojo prisijungimo puslapis ir knygų valdymo puslapis.
+
+## Knygos objektas:
+
+knygos objektas tures šiuos laukus:
+
+title: knygos pavadinimas
+author: knygos autorius
+description: trumpas knygos aprašymas
+publishedYear: knygos išleidimo metai
+coverImageURL: nuotraukos URL adresas, kuri rodo knygos viršelį
+price: knygos kaina
+quantity: knygos kiekis, kuris yra sandėlyje
