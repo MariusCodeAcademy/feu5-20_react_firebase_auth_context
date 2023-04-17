@@ -7,14 +7,15 @@ import { useAuthCtx } from '../../store/AuthProvider';
 
 const NewPostForm = ({ onNewPost }) => {
   const { user } = useAuthCtx();
+  console.log('user ===', user);
   const formik = useFormik({
     initialValues: {
       title: 'Post 1',
       body: 'The body of Post 1',
-      author: user?.email,
+      author: user?.email || '',
       tags: 'one, two, three',
       date: '',
-      userUid: user?.uid,
+      userUid: user?.uid || '',
     },
     validate: (values) => {
       const errors = {};
@@ -38,6 +39,9 @@ const NewPostForm = ({ onNewPost }) => {
       onNewPost(values);
     },
   });
+  // nes po refresh initValues neatsinaujina
+  formik.values.author = user?.email || '';
+  formik.values.userUid = user?.uid || '';
 
   return (
     <div className="new-post-form">

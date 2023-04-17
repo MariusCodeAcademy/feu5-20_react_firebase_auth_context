@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useAuthCtx } from '../store/AuthProvider';
 import SinglePost from '../components/posts/SinglePost';
 import Grid from '../components/ui/grid/Grid';
+import { useNavigate } from 'react-router-dom';
 
 function PostsPage() {
   const { ui } = useAuthCtx();
