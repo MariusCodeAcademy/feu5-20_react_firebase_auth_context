@@ -1,9 +1,11 @@
 import React from 'react';
 import Card from '../ui/card/Card';
 import './SinglePost.scss';
+import Grid from './../ui/grid/Grid';
+import { Link } from 'react-router-dom';
 
 function SinglePost({ item }) {
-  // console.log('item ===', item.date);
+  console.log('item ===', item);
 
   // atvaizduoti tagus kaip tagus (pill shape)
   const tagArr = item.tags.split(',').map((t) => t.trim());
@@ -21,7 +23,12 @@ function SinglePost({ item }) {
           ))}
         </p>
         <hr />
-        <p className="date">{item.date}</p>
+        <Grid cols={2}>
+          <p className="date">{item.date}</p>{' '}
+          <Link className="link" to={`/posts/${item.uid}`}>
+            Read more...
+          </Link>
+        </Grid>
       </Card>
     </li>
   );
