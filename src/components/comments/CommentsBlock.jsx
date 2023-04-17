@@ -23,11 +23,14 @@ function CommentBlock({ postId }) {
       const q = query(commentsCollRef); // query returns comments
       // execute query
       const querySnapshot = await getDocs(q);
+      const tempComments = [];
       querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
 
         console.log(doc.id, ' => ', doc.data());
+        // sudeti i tempComments
       });
+      //setCommentsArr su gautu masyvu
     }
     getCommentsAboutPost();
   }, []);
@@ -37,7 +40,7 @@ function CommentBlock({ postId }) {
   return (
     <div className="commentBlock">
       <NewComment />
-      <ListComments />{' '}
+      <ListComments />
     </div>
   );
 }
