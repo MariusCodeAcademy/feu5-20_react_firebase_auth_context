@@ -5,6 +5,7 @@ import { useAuthCtx } from '../store/AuthProvider';
 import SinglePost from '../components/posts/SinglePost';
 import Grid from '../components/ui/grid/Grid';
 import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 function PostsPage() {
   const { ui } = useAuthCtx();
@@ -26,9 +27,11 @@ function PostsPage() {
         });
         console.log('tempPosts ===', tempPosts);
         setPostsArr(tempPosts);
+        toast.success('posts loaded');
       } catch (error) {
         console.warn('getPosts', error.code, error.message);
         ui.showError('Tik registruotiems vartotojams');
+        toast.error('Ivyko klaida');
       }
     }
     getPosts();

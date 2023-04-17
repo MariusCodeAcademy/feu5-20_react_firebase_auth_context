@@ -9,10 +9,11 @@ import Feedback from './components/ui/feedback/Feedback';
 import PostsPage from './pages/PostsPage';
 import AddPostsPage from './pages/AddPostpage';
 import SinglePostPage from './pages/SinglePostPage';
-
+import { Toaster } from 'react-hot-toast';
 function App() {
   return (
     <div className="">
+      <Toaster />
       <Header />
       <Feedback />
       <Routes>
