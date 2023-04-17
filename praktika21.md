@@ -14,9 +14,26 @@ Sukurkite React.js puslapį, kuris suteiks vartotojams galimybę registruotis ir
 knygos objektas tures šiuos laukus:
 
 title: knygos pavadinimas
+
 author: knygos autorius
+
 description: trumpas knygos aprašymas
+
 publishedYear: knygos išleidimo metai
+
 coverImageURL: nuotraukos URL adresas, kuri rodo knygos viršelį
+
 price: knygos kaina
+
 quantity: knygos kiekis, kuris yra sandėlyje
+
+```{
+  title: 'Knygos pavadinimas',
+  author: 'Autorius',
+  description: 'Trumpas knygos aprašymas',
+  publishedYear: 2022,
+  coverImageURL: 'Nuotraukos URL adresas',
+  price: 24.99,
+  quantity: 10
+}
+```
