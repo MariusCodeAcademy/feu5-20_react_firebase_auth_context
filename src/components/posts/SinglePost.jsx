@@ -3,6 +3,7 @@ import Card from '../ui/card/Card';
 import './SinglePost.scss';
 
 function SinglePost({ item }) {
+  console.log('item ===', item.date);
   return (
     <li className="singlePost">
       <Card>
@@ -11,7 +12,7 @@ function SinglePost({ item }) {
         <p>{item.body}</p>
         <p className="tags">{item.tags}</p>
         <hr />
-        {/* <p className="date">{item.date}</p> */}
+        <p className="date">{item.date}</p>
       </Card>
     </li>
   );

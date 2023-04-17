@@ -4,6 +4,7 @@ import { db } from '../firebase/firebase';
 import { useAuthCtx } from '../store/AuthProvider';
 
 function AddPostsPage() {
+  // nunaviguoti i /posts jei sekmingai sukurtas post
   const { ui } = useAuthCtx();
   async function createPostFire(newPostObj) {
     try {
