@@ -1,4 +1,4 @@
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, orderBy, query, where } from 'firebase/firestore';
 import { db } from '../firebase/firebase';
 import { useEffect, useState } from 'react';
 import { useAuthCtx } from '../store/AuthProvider';
@@ -14,8 +14,17 @@ function PostsPage() {
   useEffect(() => {
     async function getPosts() {
       // norim gauti postus
+      let docsPromise;
       try {
-        const querySnapshot = await getDocs(collection(db, 'posts'));
+        // isrikiuoti pagal title
+        let q = query(collection(db, 'posts'), orderBy('title'));
+        // gauti tik james@bond.com postus
+        // q = query(
+        //   collection(db, 'posts'),
+        //   where('author', '==', 'james@bond.com'),
+        // );
+        docsPromise = getDocs(q);
+        const querySnapshot = await docsPromise;
         const tempPosts = [];
         querySnapshot.forEach((doc) => {
           // console.log(`${doc.id} => ${doc.data()}`);
@@ -27,12 +36,17 @@ function PostsPage() {
         });
         console.log('tempPosts ===', tempPosts);
         setPostsArr(tempPosts);
-        toast.success('posts loaded');
+        // toast.success('posts loaded');
       } catch (error) {
         console.warn('getPosts', error.code, error.message);
         ui.showError('Tik registruotiems vartotojams');
         toast.error('Ivyko klaida');
       }
+      toast.promise(docsPromise, {
+        loading: 'Loading',
+        success: 'Post atvyko',
+        error: 'klaida gaunant posts',
+      });
     }
     getPosts();
   }, []);
