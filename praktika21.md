@@ -9,6 +9,8 @@ Sukurkite React.js puslapį, kuris suteiks vartotojams galimybę registruotis ir
 5. Sukurkite React.js komponentus, kurie leistų vartotojams peržiūrėti esamas knygas, kurti naujas knygas ir trinti egzistuojančias knygas.
 6. Sukurkite puslapio maršrutizatorių, kad vartotojai galėtų naviguoti tarp skirtingų puslapių, tokie kaip vartotojo prisijungimo puslapis ir knygų valdymo puslapis.
 
+7. Sukurti SingleBookPage komponenta/puslapi ir routa. Sitas puslapis naudojamas atvaizduoti individualios knygos informacijais viename puslapyje. atejus i puslapi uzkraunama tos knygos informacijas pagal url parametra (dinamini route parametra). Puslapis turi mygtuka kuri veda atgal i Knygu sarasa
+
 ## Knygos objektas:
 
 knygos objektas tures šiuos laukus:
