@@ -3,7 +3,11 @@ import Card from '../ui/card/Card';
 
 function ListComments({ items = [] }) {
   // gauti data ir laika is item.timeStamp ir ji panaudoti JSX
-  const formatedDateAndTime = '';
+  const formatedDateAndTime = (msTime) =>
+    new Date(msTime).toLocaleString('lt-LT', {
+      dateStyle: 'medium',
+      timeStyle: 'medium',
+    });
   return (
     <ul>
       {items.map((item) => (
@@ -11,7 +15,7 @@ function ListComments({ items = [] }) {
           <Card>
             <h3>{item.title}</h3>
             <p>{item.body}</p>
-            <p>{item.timeStamp}</p>
+            <p>{formatedDateAndTime(item.timeStamp)}</p>
           </Card>
         </li>
       ))}
