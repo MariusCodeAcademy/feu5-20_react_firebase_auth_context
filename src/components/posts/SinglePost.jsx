@@ -5,7 +5,7 @@ import Grid from './../ui/grid/Grid';
 import { Link } from 'react-router-dom';
 
 function SinglePost({ item }) {
-  console.log('item ===', item);
+  // console.log('item ===', item);
 
   // atvaizduoti tagus kaip tagus (pill shape)
   const tagArr = item.tags.split(',').map((t) => t.trim());

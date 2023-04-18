@@ -27,10 +27,13 @@ function CommentBlock({ postId }) {
       querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
 
-        console.log(doc.id, ' => ', doc.data());
+        // console.log(doc.id, ' => ', doc.data());
         // sudeti i tempComments
+        tempComments.push({ uid: doc.id, ...doc.data() });
       });
       //setCommentsArr su gautu masyvu
+      console.log('tempComments ===', tempComments);
+      setCommentsArr(tempComments);
     }
     getCommentsAboutPost();
   }, []);
@@ -40,7 +43,7 @@ function CommentBlock({ postId }) {
   return (
     <div className="commentBlock">
       <NewComment />
-      <ListComments />
+      <ListComments items={commentsArr} />
     </div>
   );
 }
