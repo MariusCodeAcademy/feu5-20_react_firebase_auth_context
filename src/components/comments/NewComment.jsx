@@ -10,7 +10,7 @@ const commentObj = {
   title: 'title',
 };
 
-function NewComment() {
+function NewComment({ onNewComment }) {
   const { user } = useAuthCtx();
   const formik = useFormik({
     initialValues: {
@@ -19,7 +19,11 @@ function NewComment() {
       title: 'Comment 1',
     },
     onSubmit(values) {
-      console.log('values ===', values);
+      // console.log('values ===', values);
+      onNewComment({
+        ...values,
+        timeStamp: +new Date(),
+      });
     },
   });
   formik.values.authorEmail = user?.email || '';

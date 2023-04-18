@@ -2,6 +2,8 @@ import React from 'react';
 import Card from '../ui/card/Card';
 
 function ListComments({ items = [] }) {
+  // gauti data ir laika is item.timeStamp ir ji panaudoti JSX
+  const formatedDateAndTime = '';
   return (
     <ul>
       {items.map((item) => (
