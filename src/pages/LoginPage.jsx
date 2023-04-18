@@ -7,6 +7,7 @@ import LoginForm from '../components/auth/LoginForm';
 import { auth, googleProvider } from '../firebase/firebase';
 import { useAuthCtx } from '../store/AuthProvider';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -39,7 +40,7 @@ function LoginPage() {
 
   function loginWithGoogle() {
     //
-    signInWithPopup(auth, googleProvider)
+    const loginGooglePromise = signInWithPopup(auth, googleProvider)
       .then((result) => {
         // This gives you a Google Access Token. You can use it to access the Google API.
         const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -61,6 +62,11 @@ function LoginPage() {
         const credential = GoogleAuthProvider.credentialFromError(error);
         // ...
       });
+    toast.promise(loginGooglePromise, {
+      loading: 'Loading',
+      success: 'Login success',
+      error: 'Error when loging in',
+    });
   }
   return (
     <div className="container">
