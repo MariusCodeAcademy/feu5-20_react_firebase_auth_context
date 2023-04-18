@@ -29,12 +29,19 @@ function SinglePostPage() {
   }, []);
   // parisiusti posta is posts //https://firebase.google.com/docs/firestore/query-data/get-data?hl=en&authuser=0#get_a_document
 
+  function deleteFirePost() {
+    // https://firebase.google.com/docs/firestore/manage-data/delete-data?hl=en&authuser=2#delete_documents
+    // istrinti dokumenta
+    // atvaizduoti eiga su toast.promise
+  }
+
   return (
     <div className="container">
       <Card>
         <h1>{postObj.title}</h1>
         <p>This is SinglePostPage</p>
         <button onClick={() => navigate(-1)}>Go back</button>
+        <button>Delete Post</button>
       </Card>
       {/* Comments Block */}
       <CommentBlock postId={postUid} />
