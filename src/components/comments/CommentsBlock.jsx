@@ -2,7 +2,14 @@ import ListComments from './ListComments';
 import NewComment from './NewComment';
 import './CommentBlock.scss';
 import { useEffect, useState } from 'react';
-import { addDoc, collection, doc, getDocs, query } from 'firebase/firestore';
+import {
+  addDoc,
+  collection,
+  doc,
+  getDocs,
+  orderBy,
+  query,
+} from 'firebase/firestore';
 import { db } from '../../firebase/firebase';
 import { toast } from 'react-hot-toast';
 
@@ -23,7 +30,7 @@ function CommentBlock({ postId }) {
       setCommetsCollRef(commentsCollRef);
       // Create a query against the collection.
 
-      const q = query(commentsCollRef); // query returns comments
+      const q = query(commentsCollRef, orderBy('timeStamp', 'asc')); // query returns comments
       // execute query
       const querySnapshot = await getDocs(q);
       const tempComments = [];
