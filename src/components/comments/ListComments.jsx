@@ -5,9 +5,10 @@ function ListComments({ items = [] }) {
   // gauti data ir laika is item.timeStamp ir ji panaudoti JSX
   const formatedDateAndTime = (msTime) =>
     new Date(msTime).toLocaleString('lt-LT', {
-      dateStyle: 'medium',
+      dateStyle: 'long',
       timeStyle: 'medium',
     });
+
   return (
     <ul>
       {items.map((item) => (
