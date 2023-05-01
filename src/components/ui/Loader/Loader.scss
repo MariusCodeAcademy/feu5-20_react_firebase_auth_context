@@ -1,0 +1,33 @@
+.loader {
+  .text {
+    font-size: 2rem;
+    margin-right: 0.5em;
+    animation: fadeInOut 2s ease-in-out infinite;
+  }
+  .spinner {
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+    border: 0.25em solid rgba(0, 0, 0, 0.1);
+    border-top-color: #333;
+    animation: spin 0.8s linear infinite;
+    display: inline-block;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes fadeInOut {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+}
